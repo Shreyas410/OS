@@ -1,0 +1,84 @@
+
+public class Bankers {
+
+    static int P = 5;
+    static int R = 3;
+
+    public static void calculateNeed(int[][] need, int maxm[][],int allot[][]) {
+
+        for (int i = 0; i < P; i++) {
+            for (int j = 0; j < R; j++) {
+                 need[i][j] = maxm[i][j] -allot[i][j];
+            }
+            
+        }
+    }
+    public static boolean safeseq(int[] process,int[][] maxm, int[][] allot, int[] avail) {
+        int [][] need = new int[P][R];
+        calculateNeed(need, maxm, allot);
+
+        boolean [] finish = new boolean[P];
+
+        int safesequence[]= new int[P];
+
+        int [] work = new int[R];
+        for (int i = 0; i < R; i++) {
+            work[i]=avail[i];
+        }
+        int count = 0;
+        while (count<P) {
+            Boolean found = false;
+            for (int i = 0; i < P; i++) {
+                
+                if (finish[i]==false) {
+                    int j;
+                    for ( j = 0; j < R; j++) {
+                        if (need[i][j]>work[j]) 
+                            break;
+
+                        }
+                        if (j==R) {
+                            for (int j2 = 0; j2 < R; j2++) {
+                                work[j2]+=allot[i][j2];
+
+                            }
+                            safesequence[count++]=i;
+                            finish[i]=true;
+                            found=true;
+                        }
+                    
+                }
+            }
+            if (found == false)
+            {
+                System.out.print("System is not in safe state");
+                return false;
+            }
+
+        }
+        System.out.println("System is Safe ");
+        for (int i = 0; i < P; i++) {
+            System.out.println(safesequence[i]+"  ");
+            
+        }
+        return true;
+    }
+    public static void main(String[] args) {
+        int processes[] = { 0, 1, 2, 3, 4 };
+        int avail[] = { 3, 3, 2 };
+
+        int mamm[][] = { { 7, 5, 3 },
+                { 3, 2, 2, },
+                { 9, 0, 2 },
+                { 2, 2, 2, },
+                { 4, 3, 3 } };
+
+        int allot[][] = { { 0, 1, 0 },
+                { 2, 0, 0 },
+                { 3, 0, 2 },
+                { 2, 1, 1 },
+                { 0, 0, 2 } };
+                safeseq(processes, mamm, allot, avail);
+
+    }
+}

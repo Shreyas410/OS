@@ -1,0 +1,19 @@
+echo "Enter variable 1"
+read num1
+echo "Enter variable 2"
+read num2
+add(){
+    echo "Addition is:"
+echo `expr $num1 + $num2`
+}
+
+ subtract(){
+    echo `expr $num1 - $num2`
+}
+multiplication(){
+    echo `expr $num1 \* $num2`
+}
+
+add
+subtract
+multiplication

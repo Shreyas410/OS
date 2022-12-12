@@ -1,0 +1,7 @@
+#!/bin/bash
+for x
+do
+echo "the value of variable is $x"
+sleep 1
+done
+ 

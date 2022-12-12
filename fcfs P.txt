@@ -1,0 +1,23 @@
+package Practise;
+
+public class fcfsnon {
+    public static void Claculate(int at[], int bt[],int n) {
+        int wt[] = new int[n];;
+        wt[0]=0;
+
+        System.out.println("P.no \t Arrival Time \t Burst Time \t Waiting Time\n ");
+         System.out.println("1" +"\t\t" + at[0]+ "\t\t" +bt[0] + "\t\t" +wt[0] +"\n"  );
+
+
+    for (int i = 1; i < 5; i++) {
+        wt[i] = (at[i-1]+bt[i-1]+wt[i-1])-at[i];
+        System.out.println(i+1+"\t\t" + at[i]+"\t\t"+bt[i]+"\t\t"+wt[i]+"\n");
+    }
+    }
+     public static void main(String[] args) {
+        int at[]={0,2,3,4,5};
+        int bt[]={2,4,6,8,1};
+        Claculate(at,bt ,5);
+     }
+    
+}
